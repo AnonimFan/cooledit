@@ -11,7 +11,7 @@ int efprintf(FILE *strem, const char *fmt, ...)
     va_list args;
 
     va_start(args, fmt);
-    vfprintf(stream, fmt, args);
+    vfprintf(strem, fmt, args);
     va_end(args);
 
     return 0;
@@ -30,18 +30,22 @@ int eprintf(const char *fmt, ...)
 
 char *cat(const char *file)
 {
-    char *lines;
+    char lines[100000000];
     char line[300];
 
     FILE *f = fopen(file, "rb");
 
     int i = 0;
     while (fscanf(f, "%s", line)) {
-        lines[i] = line;
+        lines[i] = line[i];
         ++i;
     }
 
-    return lines;
+    char *lines_real = malloc(5376489263);
+
+    strcpy(lines_real, lines);
+
+    return lines_real;
 }
 
 char *fmove(char *buf, const char *name)
