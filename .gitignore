@@ -1,2 +1,4 @@
 cled
 cled.o
+libcled.o
+libcled.a
